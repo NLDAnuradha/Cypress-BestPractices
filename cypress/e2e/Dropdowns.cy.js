@@ -1,7 +1,7 @@
 
 describe('Handle dropdowns', ()=>{
 
-    it.skip('Dropdown with select', ()=>{ //.skip - skip test case
+    it('Dropdown with select', ()=>{ //.skip - skip test case
         cy.visit('https://www.zoho.com/commerce/free-demo.html')
         cy.get('#zcf_address_country').select('Turkey') //select the option from drop down
         .should('have.value', 'Turkey') // check the value
@@ -9,7 +9,7 @@ describe('Handle dropdowns', ()=>{
 
     })
 
-    it.skip('Dropdown without select', ()=>{
+    it('Dropdown without select', ()=>{
         cy.visit('https://www.dummyticket.com/dummy-ticket-for-visa-application/')
         cy.get('#select2-reasondummy-container').click()
         cy.get(".select2-search.select2-search--dropdown").type('Visa a').type('{enter}') //type the option from drop down
@@ -25,5 +25,19 @@ describe('Handle dropdowns', ()=>{
   
     })
 
+    it('Dynamic dropdown', ()=>{
+        cy.visit('https://www.google.com/')
+        cy.get(".a4bIc").type('cypress automation')
+        cy.wait(3000)
+        cy.get("div.wM6W7d>span").should('have.length', 13)
+        cy.get("div.wM6W7d>span").each(($el, index, $list) =>{
+            if($el.text()=='cypress automation tutorial')
+            {
+                cy.wrap($el).click()
+            }
+        }) //pass the value and select
+        
+        cy.get(".a4bIc").should('have.value','cypress automation tutorial')
+    })
     
 })
