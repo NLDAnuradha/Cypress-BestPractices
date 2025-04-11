@@ -37,7 +37,7 @@ describe('Handle dropdowns', ()=>{
             }
         }) //pass the value and select
         
-        cy.get(".a4bIc").should('have.value','cypress automation tutorial')
+        cy.get('[data-layer="Content"]').should('have.value','cypress automation tutorial')
     })
     
 })
