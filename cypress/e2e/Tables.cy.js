@@ -1,5 +1,3 @@
-const { wrap } = require("lodash");
-
 describe('Handles tables',(()=>{
 
     beforeEach('Login', ()=>{
@@ -60,6 +58,7 @@ describe('Handles tables',(()=>{
             if(TotalPages>1){
                 cy.log("Active Page is = " +p);
                 //cy.get("ul[class='pagination']>li:nth-child("+p+")").click();
+                cy.get("ul[class='pagination']>li:contains("+p+")").click({force: true});
                 cy.wait(3000);
 
                 cy.get("table[class='table table-bordered table-hover']>tbody>tr") //capture all the rows
