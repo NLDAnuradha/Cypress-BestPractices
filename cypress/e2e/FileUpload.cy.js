@@ -12,7 +12,7 @@ describe('File Upload', (()=>{
         cy.get('#uploadedfilename').should('contain', 'Test1.pdf');
         cy.get('p').should('contain', 'You uploaded');
         
-    })
+    }) 
 
     it('File Upload - Rename', ()=>{
         cy.visit('https://testpages.herokuapp.com/styled/file-upload-test.html'); //visit the website
@@ -45,7 +45,7 @@ describe('File Upload', (()=>{
         cy.get(':nth-child(6) > strong').should('contain.text', 'Files You Selected:');
     })
 
-    it.only('File Upload - Shadow Dom', ()=>{
+    it('File Upload - Shadow Dom', ()=>{
          cy.visit("https://www.htmlelements.com/demos/fileupload/shadow-dom/index.htm");
          cy.get(".smart-browse-input", {includeShadowDom:true}).attachFile('Test1.pdf');
          cy.wait(3000);

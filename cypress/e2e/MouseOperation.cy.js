@@ -3,14 +3,14 @@ require ('@4tw/cypress-drag-drop')
 
 describe("Mouse Operations", () => {
 
-    // beforeEach("visit website", ()=>{
-    //     cy.visit("https://www.opencart.com/index.php?route=cms/demo");
-    //     cy.get(".box-overlay[href='https://demo.opencart.com/']").click();
-    //     cy.wait(4000);
+     beforeEach("visit website", ()=>{
+        cy.visit("https://www.opencart.com/index.php?route=cms/demo");
+        cy.get(".box-overlay[href='https://demo.opencart.com/']").click();
+        cy.wait(4000);
         
-    // })
+    })
 
-    it.skip('MouseHover', () => {
+    it('MouseHover', () => {
         cy.visit("https://demo.opencart.com/");
         
         cy.get("body > main:nth-child(5) > div:nth-child(1) > nav:nth-child(1) > div:nth-child(3) > ul:nth-child(1) > li:nth-child(1) > div:nth-child(2) > div:nth-child(1) > ul:nth-child(1) > li:nth-child(2) > a:nth-child(1)")
@@ -22,7 +22,7 @@ describe("Mouse Operations", () => {
         .should('be.visible');
     })
 
-    it.skip('Right Click', () => {
+    it('Right Click', () => {
         cy.visit("http://swisnl.github.io/jQuery-contextMenu/demo.html");
         
         // first Approach - trigger the event
@@ -33,7 +33,7 @@ describe("Mouse Operations", () => {
         cy.get(".context-menu-one.btn.btn-neutral").rightclick(); 
     })
 
-    it.skip('Double Click', () => {
+    it('Double Click', () => {
         cy.visit("https://www.w3schools.com/TAgs/tryit.asp?filename=tryhtml5_ev_ondblclick");
         cy.wait(7000);
         //before interact with the elements - load the frame
@@ -49,13 +49,13 @@ describe("Mouse Operations", () => {
         
     })
 
-    it.skip('Drag and Drop using Plugin', () => {
+    it('Drag and Drop using Plugin', () => {
         cy.visit("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
         cy.wait(3000);
         cy.get('#box6').drag('#box106', {force:true}); //captuer the element and drag
     })
 
-    it.only('Scrolling Page', () => {
+    it('Scrolling Page', () => {
         cy.visit("https://www.countries-ofthe-world.com/flags-of-asia.html");
         cy.get(':nth-child(2) > tbody > :nth-child(18) > :nth-child(1) > img').scrollIntoView({duration:2000});
         cy.get(':nth-child(2) > tbody > :nth-child(18) > :nth-child(1) > img').should('be.visible');
@@ -68,6 +68,4 @@ describe("Mouse Operations", () => {
         cy.get('#footer').scrollIntoView({duration:2000});
 
     })
-
-    
 })
