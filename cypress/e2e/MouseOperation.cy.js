@@ -63,6 +63,10 @@ describe("Mouse Operations", () => {
         //scroll up
         cy.get(':nth-child(1) > tbody > :nth-child(2) > :nth-child(1) > img').scrollIntoView({duration:2000});
         cy.get(':nth-child(1) > tbody > :nth-child(2) > :nth-child(1) > img').should('be.visible');
+
+        //scoll till the end of the page
+        cy.get('#footer').scrollIntoView({duration:2000});
+
     })
 
     
