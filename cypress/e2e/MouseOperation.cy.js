@@ -58,6 +58,11 @@ describe("Mouse Operations", () => {
     it.only('Scrolling Page', () => {
         cy.visit("https://www.countries-ofthe-world.com/flags-of-asia.html");
         cy.get(':nth-child(2) > tbody > :nth-child(18) > :nth-child(1) > img').scrollIntoView({duration:2000});
+        cy.get(':nth-child(2) > tbody > :nth-child(18) > :nth-child(1) > img').should('be.visible');
+
+        //scroll up
+        cy.get(':nth-child(1) > tbody > :nth-child(2) > :nth-child(1) > img').scrollIntoView({duration:2000});
+        cy.get(':nth-child(1) > tbody > :nth-child(2) > :nth-child(1) > img').should('be.visible');
     })
 
     
