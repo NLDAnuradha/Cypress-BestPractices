@@ -49,12 +49,15 @@ describe("Mouse Operations", () => {
         
     })
 
-    it.only('Drag and Drop using Plugin', () => {
-        
+    it.skip('Drag and Drop using Plugin', () => {
+        cy.visit("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+        cy.wait(3000);
+        cy.get('#box6').drag('#box106', {force:true}); //captuer the element and drag
     })
 
-    it('Scrolling Page', () => {
-        
+    it.only('Scrolling Page', () => {
+        cy.visit("https://www.countries-ofthe-world.com/flags-of-asia.html");
+        cy.get(':nth-child(2) > tbody > :nth-child(18) > :nth-child(1) > img').scrollIntoView({duration:2000});
     })
 
     
