@@ -20,11 +20,11 @@ describe('TestHooksAndTags', ()=>{
         cy.log("------------Searching------------")
     })
 
-    it('Advanced search', ()=>{
+    it.skip('Advanced search', ()=>{ // skip tag
         cy.log("------------Advanced Searching------------")
     })
 
-    it('Listing Products', ()=>{
+    it.only('Listing Products', ()=>{ // only tag
         cy.log("------------Listing Products------------")
     })
 
