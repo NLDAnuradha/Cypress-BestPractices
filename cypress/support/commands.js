@@ -24,9 +24,11 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
-/// <reference types="Cypress" /> 
+/// <reference types="cypress" />
 
 /// <reference types="cypress-xpath" />
+
+
 
 require('cypress-xpath')
 
@@ -40,6 +42,34 @@ Cypress.Commands.add('getIFrame', (iframe)=>{
 
 
 // custom command for clicking on link using label
- Cypress.Commands.add('clickLink',(label)=>{
-    cy.get('a').contains(label).click();
+Cypress.Commands.add('clickLink', (linkText) => {
+    cy.contains('a', linkText).click();
+});
+
+
+ //Over write contains()
+ Cypress.Commands.overwriteQuery('contains', (originalFn, subject, filter, text, options = {})=>{
+    //determine if a filter argument was passed
+    if (typeof text === 'object'){
+        options = text
+        text = filter
+        filter = undefined
+    }
+
+    options.matchCase = false
+
+    return originalFn(subject, filter, text, options)
  })
+
+ //custom command for login
+Cypress.Commands.add('loginapp', (email, password) => {
+    cy.get('#Email').should('be.visible').clear().type(email);
+    cy.get('#Password').should('be.visible').clear().type(password);
+    cy.get('button[type="submit"]').contains('Log in').click();
+});
+
+ // Command for waiting for page load
+Cypress.Commands.add('waitForPageLoad', () => {
+    cy.get('body').should('be.visible');
+    cy.wait(1000); // Small buffer for dynamic content
+});
