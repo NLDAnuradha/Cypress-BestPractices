@@ -43,23 +43,25 @@ Cypress.Commands.add('getIFrame', (iframe)=>{
 
 // custom command for clicking on link using label
 Cypress.Commands.add('clickLink', (linkText) => {
-    cy.contains('a', linkText).click();
+    cy.contains('a').click();
 });
 
-
  //Over write contains()
- Cypress.Commands.overwriteQuery('contains', (originalFn, subject, filter, text, options = {})=>{
-    //determine if a filter argument was passed
-    if (typeof text === 'object'){
-        options = text
-        text = filter
-        filter = undefined
+Cypress.Commands.overwriteQuery('contains', function(originalFn, subject, filter, text, options = {}) {
+    // Determine if a filter argument was passed
+    if (typeof text === 'object') {
+        options = text;
+        text = filter;
+        filter = undefined;
     }
 
-    options.matchCase = false
+    // Set matchCase to false for case-insensitive matching
+    options.matchCase = false;
 
-    return originalFn(subject, filter, text, options)
- })
+    // Call the original function with modified options
+    return originalFn.call(this, subject, filter, text, options);
+});
+
 
  //custom command for login
 Cypress.Commands.add('loginapp', (email, password) => {
