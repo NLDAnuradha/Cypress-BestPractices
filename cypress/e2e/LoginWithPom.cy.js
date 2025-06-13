@@ -1,4 +1,6 @@
-import Login from "../PageObjects/LoginPage";
+//import Login from "../PageObjects/LoginPage";
+import { data } from "ospath";
+import Login from "../PageObjects/LoginPageVersion2";
 
 describe('pom', ()=>{
 
@@ -13,7 +15,7 @@ describe('pom', ()=>{
     })
 
     //using pom
-    it.only('Login Test', ()=>{
+    it('Login Test', ()=>{
         cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
         
         const ln = new Login();
@@ -22,4 +24,19 @@ describe('pom', ()=>{
         ln.clickSubmit();
         ln.verifyLogin();
     })
+
+    //using pom with fixture - reusable
+    //refrering data from fixtures and element get from pom 
+    it.only('Login Test', ()=>{
+        cy.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        
+        cy.fixture('orangehrm').then((data)=>{
+            const ln = new Login();
+                ln.setUserName(data.username)
+                ln.setPassword(data.password)
+                ln.clickSubmit();
+                ln.verifyLogin();
+            })
+        })
+        
 })
